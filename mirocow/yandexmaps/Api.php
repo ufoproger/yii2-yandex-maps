@@ -193,7 +193,7 @@ class Api extends Component {
 							if ($map->use_clusterer && $object instanceof objects\Placemark) {
 								$clusterer .= "points[$i] = $_object;\n";
 							} else {
-								$object_vars[] = 'goj_'.$i;
+								$object_vars[] = 'go_'.$i;
 								$objects .= "$_object;\n";
 							}
 
