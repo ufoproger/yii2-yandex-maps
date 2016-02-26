@@ -72,7 +72,7 @@ Map instance.
 __Usage__
 
 ```php
-    $map = new YandexMap('yandex_map', [
+    $map = new mirocow\yandexmaps\Map('yandex_map', [
             'center' => [55.7372, 37.6066],
             'zoom' => 10,
             // Enable zoom with mouse scroll
