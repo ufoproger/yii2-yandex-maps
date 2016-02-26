@@ -21,14 +21,14 @@ class Api extends Component {
 	const SCRIPT_ID = 'yandex.maps.api';
 
 	/** @var string */
-	public $protocol = 'http';
+	public $protocol = 'https';
 
 	/** @var string */
 	public $uri = 'api-maps.yandex.ru';
 
 	/** @var string */
 	/* https://tech.yandex.ru/maps/doc/jsapi/2.1/versions/concepts/index-docpage */
-	public $api_version = '2.1-dev';
+	public $api_version = '2.1';
 
 	/** @var string */
 	public $language = 'ru-RU';
