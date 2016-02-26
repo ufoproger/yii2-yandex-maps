@@ -110,7 +110,7 @@ class Api extends Component {
 					$events = "\n$var.events";
 					foreach ($object->getEvents() as $event => $handle) {
 						$event = Json::encode($event);
-						$handle = Json::encode($handle);
+						//$handle = Json::encode($handle);
 						$events .= "\n.add($event, $handle)";
 					}
 					$js .= "$events;\n";
@@ -125,6 +125,7 @@ class Api extends Component {
 
 	public function generateGeoObjectCollection(GeoObjectCollection $object,
 	  $var = null) {
+
 		$properties = $this->encodeArray($object->properties);
 		$options = $this->encodeArray($object->options);
 
@@ -162,6 +163,7 @@ class Api extends Component {
 				$jsObj = array();
 				$objBegin = false;
 				$objects = '';
+				$object_vars = [];
 				$clusterer = "var points = [];\n";
 
 				foreach ($map->objects as $i => $object) {
@@ -186,13 +188,13 @@ class Api extends Component {
 						$objBegin = true;
 						// Load only GeoObjects instanceof GeoObject
 						if ($object instanceof GeoObject) {
-							$_object = $this->generateObject($object);
-
+							$_object = $this->generateObject($object,'go_'.$i);
 							// use Clusterer
 							if ($map->use_clusterer && $object instanceof objects\Placemark) {
 								$clusterer .= "points[$i] = $_object;\n";
 							} else {
-								$objects .= ".add($_object)\n";
+								$object_vars[] = 'goj_'.$i;
+								$objects .= "$_object;\n";
 							}
 
 						} elseif (is_string($object)) {
@@ -220,8 +222,14 @@ class Api extends Component {
 					$objects .= ".add(clusterer)";
 				}
 
+
 				if (!empty($objects)) {
-					$js .= "\n\$Maps['$id'].geoObjects$objects;\n";
+					$ob_t= '';
+					foreach ($object_vars as $item) {
+						$ob_t.=".add($item)";
+					}
+					$js.=$objects;
+					$js .= "\n\$Maps['$id'].geoObjects$ob_t;\n";
 				}
 
 				if (count($jsObj) > 0) {
