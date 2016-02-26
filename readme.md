@@ -88,7 +88,29 @@ __Usage__
               "new ymaps.control.TypeSelector(['yandex#map', 'yandex#satellite'])",  
             ],                    
         ]                
-    );             
+    ); 
+                
+	$pm = new \mirocow\yandexmaps\objects\Placemark([55.8, 37.8],[],
+		[
+			'draggable'=>true,
+			'events'=>[
+				'dragend'=>'function(e){console.log(111);}'
+			]
+		]
+	);
+
+	$map->addObject($pm);
+
+	$pm2 = new \mirocow\yandexmaps\objects\Placemark([55.8, 37.8],[],
+		[
+			'draggable'=>true,
+			'events'=>[
+				'dragend'=>'function(e){console.log(e.get(\'type\'));}'
+			]
+		]
+	);
+
+	$map->addObject($pm2);                
 ```
 
 ### mirocow\yandexmaps\Canvas ###
