@@ -106,6 +106,7 @@ class Api extends Component {
 			$js = $this->$generator($object, $var);
 
 			if ($object instanceof Interfaces\EventAggregate && count($object->getEvents()) > 0) {
+				if($object instanceof Map) $var = '$Maps["' . $object->getId() . '"]';
 				if (null !== $var) {
 					$events = "\n$var.events";
 					foreach ($object->getEvents() as $event => $handle) {
