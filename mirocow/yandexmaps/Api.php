@@ -111,7 +111,7 @@ class Api extends Component {
 					$events = "\n$var.events";
 					foreach ($object->getEvents() as $event => $handle) {
 						$event = Json::encode($event);
-						//$handle = Json::encode($handle);
+						$handle = Json::encode($handle);
 						$events .= "\n.add($event, $handle)";
 					}
 					$js .= "$events;\n";
