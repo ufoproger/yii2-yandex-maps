@@ -192,7 +192,7 @@ class Api extends Component {
 							$_object = $this->generateObject($object,'go_'.$i);
 							// use Clusterer
 							if ($map->use_clusterer && $object instanceof objects\Placemark) {
-								$clusterer .= "points[$i] = $_object;\n";
+								$clusterer .= "$_object; points[$i] = go_$i;\n";
 							} else {
 								$object_vars[] = 'go_'.$i;
 								$objects .= "$_object;\n";
@@ -229,8 +229,14 @@ class Api extends Component {
 					foreach ($object_vars as $item) {
 						$ob_t.=".add($item)";
 					}
-					$js.=$objects;
-					$js .= "\n\$Maps['$id'].geoObjects$ob_t;\n";
+					if (!$map->use_clusterer)
+						$js.=$objects;
+					$js .= "\n\$Maps['$id'].geoObjects$ob_t\n";
+
+					if ($map->use_clusterer)
+						$js.=$objects;
+
+					$js.= ';';
 				}
 
 				if (count($jsObj) > 0) {
