@@ -6,14 +6,14 @@ Installation
 ------------
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
-### Add repositor
+### Add repository
 
 
 ```json
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/mirocow/yii2-yandex-maps.git"
+            "url": "https://github.com/ufoproger/yii2-yandex-maps.git"
         }
     ]
 ```
@@ -21,13 +21,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 and then
 
 ```
-php composer.phar require --prefer-dist "mirocow/yii2-yandex-maps" "*"
+php composer.phar require --prefer-dist "ufoproger/yii2-yandex-maps" "*"
 ```
 
 or add
 
 ```json
-"mirocow/yii2-yandex-maps" : "*"
+"ufoproger/yii2-yandex-maps" : "*"
 ```
 
 to the require section of your application's `composer.json` file.
